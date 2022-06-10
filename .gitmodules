@@ -1,3 +1,6 @@
 [submodule "frontend/src/gam_sdk_ui"]
 	path = frontend/src/gam_sdk_ui
 	url = https://github.com/maldan/gam_sdk_ui
+[submodule "frontend/src/gam-lib-ui"]
+	path = frontend/src/gam-lib-ui
+	url = https://github.com/maldan/gam-lib-ui
