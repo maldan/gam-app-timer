@@ -1,33 +1,31 @@
 <template>
   <div :class="$style.grid">
     <div :class="$style.block">
-      Nado salo est
-      <button>s</button>
-      <button>s</button>
-      <button>s</button>
-
-      <Button />
+      <Button text="5" />
     </div>
 
     <div :class="$style.block">
-      Nado salo est
-      <button>s</button>
-      <button>s</button>
-      <button>s</button>
-
-      <Button />
+      <Button text="Hi" />
+      <Button text="Hi" color="gray" />
 
       <Checkbox v-model="sas" />
       <Checkbox v-model="sas" />
       <Checkbox v-model="sas" />
 
       <Toggle :list="['1', '2']" v-model="sasx" />
+
+      <Input />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Button, Checkbox, Toggle } from "../gam-lib-ui/vue/component/ui";
+import {
+  Button,
+  Checkbox,
+  Toggle,
+  Input,
+} from "../gam-lib-ui/vue/component/ui";
 import { ref } from "vue";
 
 const sas = ref(false);
@@ -50,7 +48,7 @@ const sasx = ref("1");
   display: flex;
   flex-direction: column;
 
-  button {
+  /*button {
     background-color: transparent;
     color: $color-white-060;
     outline: none;
@@ -64,7 +62,7 @@ const sasx = ref("1");
     &:hover {
       background-color: #212225;
     }
-  }
+  }*/
 
   .button_2 {
     background: $color-main;
