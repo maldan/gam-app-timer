@@ -9,7 +9,9 @@
       <Row size="2" style="margin-top: 10px">
         <Button v-if="!isChange" @click="isChange = !isChange" text="Change" />
         <Button v-if="isChange" @click="change" text="Ok" />
-        <Button @click="stop" text="Stop" />
+        <Button @click="stop" text="Stop">
+          <template #icon-right><IconClose style="margin-left: 5px" /></template>
+        </Button>
       </Row>
     </Block>
   </div>
@@ -17,8 +19,8 @@
 
 <script setup lang="ts">
 import { Button, Checkbox, Toggle, Input, Block, Row } from '../gam-lib-ui/vue/component/ui';
+import { IconClose } from '../gam-lib-ui/vue/component/icon';
 import { ref } from 'vue';
-import dayjs from 'dayjs';
 import { TimeHelper } from '@/gam-lib-ui/util/TimeHelper';
 import { API_URL } from '@/const';
 
