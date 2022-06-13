@@ -1,42 +1,57 @@
 <template>
   <div :class="$style.main">
     <Block>
-      <div v-if="!isChange" :class="$style.time">12:30:43</div>
+      <div v-if="!isChange" :class="$style.time">
+        {{ TimeHelper.secondsToHMS(timer) }}
+      </div>
       <Input v-if="isChange" v-model="time" />
 
       <Row size="2" style="margin-top: 10px">
         <Button v-if="!isChange" @click="isChange = !isChange" text="Change" />
-        <Button v-if="isChange" @click="sas" text="Ok" />
-        <Button text="Stop" />
+        <Button v-if="isChange" @click="change" text="Ok" />
+        <Button @click="stop" text="Stop" />
       </Row>
     </Block>
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  Button,
-  Checkbox,
-  Toggle,
-  Input,
-  Block,
-  Row,
-} from "../gam-lib-ui/vue/component/ui";
-import { ref } from "vue";
-import dayjs from "dayjs";
-import { TimeHelper } from "@/gam-lib-ui/util/TimeHelper";
+import { Button, Checkbox, Toggle, Input, Block, Row } from '../gam-lib-ui/vue/component/ui';
+import { ref } from 'vue';
+import dayjs from 'dayjs';
+import { TimeHelper } from '@/gam-lib-ui/util/TimeHelper';
+import { API_URL } from '@/const';
 
-const time = ref("00:00:00");
+const time = ref('00:00:00');
 const isChange = ref(false);
+const isStop = ref(false);
+const timer = ref(0);
 
-function sas() {
+const ring = new Audio(`${API_URL}/main/ring`);
+
+setInterval(() => {
+  if (timer.value <= 0) return;
+
+  timer.value -= 1;
+  if (timer.value <= 0) {
+    ring.play();
+  }
+}, 1000);
+
+function change() {
   isChange.value = false;
-  console.log(TimeHelper.HMStoSeconds(time.value));
+  isStop.value = false;
+  timer.value = TimeHelper.HMStoSeconds(time.value);
+}
+
+function stop() {
+  isStop.value = true;
+  ring.pause();
 }
 </script>
 
 <style module lang="scss">
-@import "../gam-lib-ui/vue/vars";
+@import '../gam-lib-ui/vue/vars';
 
 .main {
   display: flex;
