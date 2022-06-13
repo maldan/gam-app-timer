@@ -1,6 +1,6 @@
 {
   "name": "@maldan/gam-app-timer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Timer",
   "main": "index.js",
   "scripts": {},
